@@ -8,7 +8,7 @@ More information on OpenLANE and setup installation can be found here https://gi
 # RTL to GDSII or Physical Design
 Physical Design is a very crucial and time taking portion of Chip Design life cycle, involving tidious processes like synthesis, place and route, clock tree synthesis etc. It start's with  the code of a design in VHDL or Verilog, simulating the coded design, followed by design synthesis and optimization, then running equivalency checks at different stages and then synthesizing the design, floorplan, place-and-route the synthesized netlist while meeting timing, and finally, writing out a GDSII file.
 
-	![](/Pictures/openlane_flow.png)
+![](Pictures/openlane_flow.png)
 
 As said earlier, OpenLANE is an automated flow and we can also use it interactively, as in we can perform the flow step by step as below.
 
@@ -78,7 +78,7 @@ We can actually see the floorplan made and locate the IO pins placed using magic
 
     % magic -T <.tech file path> lef read <.lef file path(in tmp folder)> def read <.def file path>
 
-	![](/Pictures/floorplan.png)
+![](Pictures/floorplan.PNG)
 
 Once satisfied with the plan, next step is placement.
 
@@ -92,7 +92,7 @@ We can actually see the placement made using magic tool
 
     % magic -T <.tech file path> lef read <.lef file path(in tmp folder)> def read <placement.def file path>
 
-	![](/Pictures/placement.png)
+![](Pictures/Placements.png)
 
 The beauty of the flow is its ebility to make modifications on the fly. In case we need to modify any cell or any part of the design or any parameter of the design, we just need to update the respective variable and re-run the steps. In case we need to improve the performance of any particular cell we can always use ngspice tool to analysis the performance by doing DC analysis or Transient analysis using the spice tool. Thereafter we can write a new verilog file from the tool itself and update the netlist. In this case we need to re-run the floorplan and placement stages as we are modifying the netlist after placement. 
 
@@ -137,7 +137,7 @@ Once all steps are finished, we need to sign-off doing post-route STA and genera
 
 Done!
 
-	![](/Pictures/final.png)
+![](Pictures/final.PNG)
 
 We are done with our Physical Design steps of our chip.
 
