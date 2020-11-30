@@ -8,6 +8,7 @@ More information on OpenLANE and setup installation can be found here https://gi
 # RTL to GDSII or Physical Design
 Physical Design is a very crucial and time taking portion of Chip Design life cycle, involving tidious processes like synthesis, place and route, clock tree synthesis etc. It start's with  the code of a design in VHDL or Verilog, simulating the coded design, followed by design synthesis and optimization, then running equivalency checks at different stages and then synthesizing the design, floorplan, place-and-route the synthesized netlist while meeting timing, and finally, writing out a GDSII file.
 
+	![](/Pictures/openlane_flow.png)
 
 As said earlier, OpenLANE is an automated flow and we can also use it interactively, as in we can perform the flow step by step as below.
 
@@ -24,17 +25,17 @@ First things first, perform the installation steps and setup the terminal.
 Assuming 'docker' step is finished, (mentioned in the above github link)
 
 
-      % ./flow.tcl -design <design_name>
+      ./flow.tcl -design <design_name>
  
  will run the entire steps and gives us the final output. 
  
  But, if we want to understand the steps happening and to fine tune the results as per our needs, we can run the same steps interactives, i.e., one after the other ensuring our requirements are met(like design metrics). For interactive flow,
  
-    % ./flow.tcl -interactive
+     ./flow.tcl -interactive
  
  this triggers the tools and we can confirm this by seeing the symbol as shown
  
-       %
+    %
  
  Now, we need to import the package required using the below command
  
@@ -77,7 +78,9 @@ We can actually see the floorplan made and locate the IO pins placed using magic
 
     % magic -T <.tech file path> lef read <.lef file path(in tmp folder)> def read <.def file path>
 
-Satisfied with the plan, next step is placement.
+	![](/Pictures/floorplan.png)
+
+Once satisfied with the plan, next step is placement.
 
 # Placement
 
@@ -88,6 +91,8 @@ This performs the placement of the cells, giving us the updated def file with ex
 We can actually see the placement made using magic tool
 
     % magic -T <.tech file path> lef read <.lef file path(in tmp folder)> def read <placement.def file path>
+
+	![](/Pictures/placement.png)
 
 The beauty of the flow is its ebility to make modifications on the fly. In case we need to modify any cell or any part of the design or any parameter of the design, we just need to update the respective variable and re-run the steps. In case we need to improve the performance of any particular cell we can always use ngspice tool to analysis the performance by doing DC analysis or Transient analysis using the spice tool. Thereafter we can write a new verilog file from the tool itself and update the netlist. In this case we need to re-run the floorplan and placement stages as we are modifying the netlist after placement. 
 
@@ -132,14 +137,25 @@ Once all steps are finished, we need to sign-off doing post-route STA and genera
 
 Done!
 
+	![](/Pictures/final.png)
+
 We are done with our Physical Design steps of our chip.
 
 #
 
 Many Thanks to Mr. Kunal Ghosh and his team.
+
 #
 
-Useful links,
+# Author
+
+N Yashwanth
+
+https://www.linkedin.com/in/yashwanthn09/
+
+#
+
+Useful links and Sources,
 
 https://github.com/efabless/openlane
 
@@ -148,4 +164,6 @@ https://github.com/nickson-jose/openlane_build_script
 https://github.com/nickson-jose/vsdstdcelldesign
 
 https://github.com/kunalg123
+
+https://github.com/britovski/vsdOpenLANE
  
